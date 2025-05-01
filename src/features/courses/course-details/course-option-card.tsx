@@ -16,8 +16,6 @@ const CourseOptionCard = ({
     courseOption;
   const isSelectedCourse = selectedCourse.id === id;
 
-  console.log(isSelectedCourse, selectedCourse.id === id, id);
-
   return (
     <div className="rounded-[8px] py-[32px] px-6 border border-natural-80">
       <div className="flex items-center gap-x-[8px]">
