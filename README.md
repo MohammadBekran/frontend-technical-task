@@ -2,9 +2,9 @@
 
 This is a frontend application built for the technical task using React, TypeScript, Tailwind CSS, Shadcn and Vite.
 
-<!-- ## 🚀 Live Demo
+## 🚀 Live Demo
 
-🔗 [Live URL]() -->
+🔗 [Live URL](https://frontend-technical-task-r9cb.vercel.app)
 
 ## 🧪 Features
 
@@ -39,7 +39,6 @@ npm run dev
 ```
 
 Visit http://localhost:5173 in your browser.
-
 
 ## 🛠 Technologies Used
 
