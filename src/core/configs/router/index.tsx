@@ -9,7 +9,7 @@ import PanelCourseSchedulesPage from "@/pages/panel/course-schedules";
 
 const router = createBrowserRouter([
   {
-    path: ROUTES.CourseDetails,
+    path: ROUTES.CourseDetails(":id"),
     element: <CourseDetailsPage />,
   },
   {

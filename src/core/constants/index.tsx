@@ -3,7 +3,7 @@ import { File } from "lucide-react";
 import type { TCourseSchedule, TSidebarNavigationItem } from "@/core/types";
 
 export const ROUTES = {
-  CourseDetails: "/courses/:id",
+  CourseDetails: (courseId: number | string) => `/courses/${courseId}`,
   EnrollCourse: (courseId: number | string) => `/courses/${courseId}/enroll`,
   PanelCourseSchedules: "/panel/courses/schedules",
 } as const;

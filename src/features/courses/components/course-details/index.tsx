@@ -4,9 +4,9 @@ import { useNavigate, useParams } from "react-router";
 import CourseOptionCard from "@/features/courses/components/course-details/course-option-card";
 
 import { Button } from "@/components/ui/button";
-import { useCourseScheduleStore } from "@/features/courses/core/hooks";
 import { COURSE_SCHEDULES, ROUTES } from "@/core/constants";
 import type { TCourseSchedule } from "@/core/types";
+import { useCourseScheduleStore } from "@/features/courses/core/hooks";
 
 const CourseDetails: React.FC = () => {
   const [selectedCourse, setSelectedCourse] = useState<TCourseSchedule>(
@@ -19,9 +19,15 @@ const CourseDetails: React.FC = () => {
   );
 
   const courseId = Number(params.id);
-  const course: TCourseSchedule =
-    COURSE_SCHEDULES.find((courseSchedule) => courseSchedule.id === courseId) ??
-    ({} as TCourseSchedule);
+  const course = COURSE_SCHEDULES.find(
+    (courseSchedule) => courseSchedule.id === courseId
+  );
+
+  if (!course) {
+    navigate(ROUTES.PanelCourseSchedules);
+
+    return;
+  }
 
   const handleSelectCourse = (course: TCourseSchedule) => {
     setSelectedCourse(course);

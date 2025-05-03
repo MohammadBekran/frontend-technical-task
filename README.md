@@ -13,6 +13,14 @@ This is a frontend application built for the technical task using React, TypeScr
 - 💅 Clean and modern UI
 - ⚠️ Toast notifications for feedback
 
+## 🧭 Available Routes
+
+| Route                      | Description                          |
+| -------------------------- | ------------------------------------ |
+| `/courses/:id`             | View course details                  |
+| `/courses/:id/enroll`      | Enroll in a course                   |
+| `/panel/courses/schedules` | View course schedules (Panel layout) |
+
 ## ⚙️ Getting Started
 
 ### 1. Clone the Repository
