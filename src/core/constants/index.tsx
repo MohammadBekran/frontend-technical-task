@@ -5,7 +5,9 @@ import type { TCourse, TSidebarNavigationItem } from "@/core/types";
 export const ROUTES = {
   CourseDetails: (courseId: number | string) => `/courses/${courseId}`,
   EnrollCourse: (courseId: number | string) => `/courses/${courseId}/enroll`,
+  Panel: "/panel",
   PanelCourseSchedules: "/panel/courses/schedules",
+  PanelSavedCourses: "/panel/courses/saved",
 } as const;
 
 export const COURSE_SCHEDULES: TCourse[] = [

@@ -13,8 +13,12 @@ import {
 import type { TCourseSchedule } from "@/core/types";
 
 export const COURSE_SCHEDULE_COLUMN = (
-  onRedirect: (courseId: number) => void,
-  onSaveCourse: (courseId: number) => void
+  onSaveCourse: (courseId: number) => void,
+  onEnrollCourse: (courseId: number) => void,
+  onRemoveCourseFromSavedCoursesList: (courseId: number) => void,
+  onRemoveCourseFromEnrolledCoursesList: (courseId: number) => void,
+  savedCourses: number[],
+  enrolledCourses: number[]
 ): ColumnDef<TCourseSchedule>[] =>
   [
     {
@@ -38,6 +42,17 @@ export const COURSE_SCHEDULE_COLUMN = (
       cell: ({ row }) => {
         const { id } = row.original;
 
+        const isSaved = savedCourses.includes(id);
+        const isEnrolled = enrolledCourses.includes(id);
+
+        const handleSave = () =>
+          isSaved ? onRemoveCourseFromSavedCoursesList(id) : onSaveCourse(id);
+        const handleEnroll = () => {
+          isEnrolled
+            ? onRemoveCourseFromEnrolledCoursesList(id)
+            : onEnrollCourse(id);
+        };
+
         return (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -48,12 +63,12 @@ export const COURSE_SCHEDULE_COLUMN = (
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
-              <DropdownMenuItem onClick={() => onRedirect(id)}>
-                Enroll in Course
+              <DropdownMenuItem onClick={() => handleEnroll()}>
+                {isEnrolled ? "Remove from enrolled list" : "Enroll in Course"}
               </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={() => onSaveCourse(id)}>
-                Save
+              <DropdownMenuItem onClick={() => handleSave()}>
+                {isSaved ? "Remove from saved list" : "Save"}
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

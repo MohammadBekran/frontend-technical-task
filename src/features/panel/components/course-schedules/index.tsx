@@ -8,16 +8,31 @@ import { COURSE_SCHEDULES, ROUTES } from "@/core/constants";
 
 const PanelCourseSchedules: React.FC = () => {
   const navigate = useNavigate();
-  const addCourseToSavedCoursesList = useCourseScheduleStore(
-    (state) => state.addCourseToSavedCoursesList
-  );
+  const {
+    savedCourses,
+    enrolledCourses,
+    addCourseToSavedCoursesList,
+    addCourseToEnrolledCoursesList,
+    removeFromSavedCoursesList,
+    removeFromEnrolledCoursesList,
+  } = useCourseScheduleStore();
 
-  const handleRedirect = (courseId: number) => {
+  const handleEnrollCourse = (courseId: number) => {
+    addCourseToEnrolledCoursesList(courseId);
+
     navigate(ROUTES.EnrollCourse(courseId));
   };
 
-  const handleAddCourseToSavedCourseList = (courseId: number) => {
+  const handleRemoveCourseFromEnrolledCourse = (courseId: number) => {
+    removeFromEnrolledCoursesList(courseId);
+  };
+
+  const handleSaveCourse = (courseId: number) => {
     addCourseToSavedCoursesList(courseId);
+  };
+
+  const handleRemoveCourseFromSavedCoursesList = (courseId: number) => {
+    removeFromSavedCoursesList(courseId);
   };
 
   return (
@@ -25,8 +40,12 @@ const PanelCourseSchedules: React.FC = () => {
       <h1 className="text-2xl font-bold">Course Schedules</h1>
       <DataTable
         columns={COURSE_SCHEDULE_COLUMN(
-          handleRedirect,
-          handleAddCourseToSavedCourseList
+          handleSaveCourse,
+          handleEnrollCourse,
+          handleRemoveCourseFromSavedCoursesList,
+          handleRemoveCourseFromEnrolledCourse,
+          savedCourses,
+          enrolledCourses
         )}
         data={COURSE_SCHEDULES[0].schedules}
       />

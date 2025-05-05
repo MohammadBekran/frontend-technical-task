@@ -22,11 +22,11 @@ const router = createBrowserRouter([
     element: <CourseEnroll />,
   },
   {
-    path: ROUTES.PanelCourseSchedules,
+    path: ROUTES.Panel,
     element: <PanelLayout />,
     children: [
       {
-        index: true,
+        path: ROUTES.PanelCourseSchedules,
         element: <PanelCourseSchedulesPage />,
       },
     ],
