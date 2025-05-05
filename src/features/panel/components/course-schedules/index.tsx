@@ -28,7 +28,7 @@ const PanelCourseSchedules: React.FC = () => {
           handleRedirect,
           handleAddCourseToSavedCourseList
         )}
-        data={COURSE_SCHEDULES}
+        data={COURSE_SCHEDULES[0].schedules}
       />
     </div>
   );

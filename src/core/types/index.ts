@@ -16,15 +16,22 @@ export type TLocation = {
 export type TPricing = {
   amount: number;
   currency: string;
-  valid_until: number;
+  valid_until: string;
 };
 
 export type TCourseSchedule = {
   id: number;
-  dates: number[][];
+  date: string;
+  time: string;
   instructors: TInstructor[];
   location: TLocation;
   pricing: TPricing;
+};
+
+export type TCourse = {
+  id: number;
+  name: string;
+  schedules: TCourseSchedule[];
 };
 
 export type TSidebarNavigationItem = {

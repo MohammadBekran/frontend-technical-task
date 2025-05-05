@@ -41,16 +41,18 @@ const CourseDetails: React.FC = () => {
     addCourseToSavedCoursesList(courseId);
   };
 
-  console.log(course);
-
   return (
     <div className="flex flex-col gap-y-6 rounded-2xl p-8 m-5 bg-secondary lg:w-[536px]">
       <h1 className="title-large-semibold">Course Dates</h1>
-      <CourseOptionCard
-        course={course}
-        selectedCourse={selectedCourse}
-        onSelectCourse={handleSelectCourse}
-      />
+      {course.schedules.map((courseSchedule) => (
+        <CourseOptionCard
+          key={courseSchedule.id}
+          courseSchedule={courseSchedule}
+          courseName={course.name}
+          selectedCourseSchedule={selectedCourse}
+          onSelectCourseSchedule={handleSelectCourse}
+        />
+      ))}
       <Button
         className="heading-medium-bold h-12 rounded-[8px] cursor-pointer bg-primary-40 hover:bg-primary-40 !text-white"
         onClick={handleEnrollCourse}

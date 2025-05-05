@@ -1,24 +1,22 @@
 import type { TCourseSchedule } from "@/core/types";
-import { cn, dateConverter } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 
 interface ICourseOptionCardProps {
-  course: TCourseSchedule;
-  selectedCourse: TCourseSchedule;
-  onSelectCourse: (course: TCourseSchedule) => void;
+  courseSchedule: TCourseSchedule;
+  courseName: string;
+  selectedCourseSchedule: TCourseSchedule;
+  onSelectCourseSchedule: (course: TCourseSchedule) => void;
 }
 
 const CourseOptionCard = ({
-  course,
-  selectedCourse,
-  onSelectCourse,
+  courseSchedule,
+  courseName,
+  selectedCourseSchedule,
+  onSelectCourseSchedule,
 }: ICourseOptionCardProps) => {
-  const { id, instructors, location, pricing, dates } = course;
+  const { id, instructors, location, pricing, date, time } = courseSchedule;
 
-  const isSelectedCourse = (selectedCourse?.id || null) === id;
-  const startDate = new Date(dates[0][0] * 1000);
-  const endDate = new Date(dates[0][0] * 1000);
-  const startTimeStr = dateConverter(startDate);
-  const endDateStr = dateConverter(endDate);
+  const isSelectedCourse = (selectedCourseSchedule?.id || null) === id;
 
   return (
     <div className="rounded-[8px] py-[32px] px-6 border border-natural-80">
@@ -30,23 +28,23 @@ const CourseOptionCard = ({
               "bg-blue-50": isSelectedCourse,
             }
           )}
-          onClick={() => onSelectCourse(course)}
+          onClick={() => onSelectCourseSchedule(courseSchedule)}
         />
         <span className="heading-small-bold !text-primary-30">
-          {location.timezone}
+          {courseName}
         </span>
       </div>
       <div className="flex justify-between pl-8">
         <div className="space-y-4">
           <div className="space-y-1">
-            <h3 className="max-w-[316px] title-small-bold">{pricing.amount}</h3>
-            <h4 className="title-small-regular truncate max-w-[200px]">
-              {location.timezone}
+            <h3 className="max-w-[316px] title-small-bold">{date}</h3>
+            <h4 className="title-small-regular truncate max-w-[230px]">
+              {time}
             </h4>
             <span className="body0-medium0-regular">{location.timezone}</span>
           </div>
           <span className="body-medium-regular">
-            {startTimeStr} Until {endDateStr}
+            ${pricing.amount} {pricing.currency} Until {pricing.valid_until}
           </span>
         </div>
         <div className="space-y-[6px]">
